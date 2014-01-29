@@ -4,7 +4,8 @@ var markdown = [
   'Line1', '**Line2**', 'Line3'
 ];
 
-var mdEditor = require('./lib/markdown-editor');
+var mdEditor = require('./lib/markdown-editor/');
+var debug = require('./lib/debug');
 mdEditor.init();
 
 var ace = require('brace');
@@ -21,6 +22,7 @@ session.setMode('ace/mode/text');
 editor.setTheme('ace/theme/clouds');
 
 editor.setValue('Line1\nLine2\nLine3');
+mdEditor.update('Line1\nLine2\nLine3');
 
 renderer.setShowGutter(false);
 renderer.setOption('fontSize', 20)
@@ -28,23 +30,20 @@ renderer.setOption('fontSize', 20)
 var $editor = document.getElementById('wysiwyg-editor');
 var $textlayer = $editor.getElementsByClassName('ace_text-layer')[0];
 
-setInterval(function () {
-  var $textlayer = $editor.getElementsByClassName('ace_text-layer')[0];
-  var $lines = $textlayer.getElementsByTagName('div');
-  window.g.$lines = $lines;
-  [].forEach.call($lines, function (l) { 
-    l.classList.add('wysiwyg-italic');
-  })
-}, 500);
+editor.on('change', function (e) {
+  var action = e.data.action
+    , start  = e.data.range.start
+    , end    = e.data.range.end
+  ;
 
-editor.commands.addCommand({
-    name: 'refresh',
-    bindKey: { win: 'Ctrl-M',  mac: 'Option-M'},
-    exec: function(editor) {
-      console.log('executing');
-      editor.setValue('Line1\nLine2\nLine3\n\nhello why');
-    },
-    readOnly: true // false if this command should not apply in readOnly mode
+  switch (action) {
+    case 'removeText':
+      mdEditor.remove(start, end);
+      break;
+    default: 
+      console.log('unknown action', action);
+      break;
+  }
 });
 
 window.g = { 
