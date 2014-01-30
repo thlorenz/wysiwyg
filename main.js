@@ -1,5 +1,7 @@
 'use strict';
 
+var util = require('./lib/util');
+
 var markdown = [
   'Line1', '**Line2**', 'Line3'
 ];
@@ -32,8 +34,8 @@ var $textlayer = $editor.getElementsByClassName('ace_text-layer')[0];
 
 editor.on('change', function (e) {
   var action = e.data.action
-    , start  = e.data.range.start
-    , end    = e.data.range.end
+    , start  = util.normalizeLocation(e.data.range.start)
+    , end    = util.normalizeLocation(e.data.range.end)
   ;
 
   switch (action) {
