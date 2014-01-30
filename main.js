@@ -2,59 +2,32 @@
 
 var util = require('./lib/util');
 
-var markdown = [
-  'Line1', '**Line2**', 'Line3'
-];
-
-var mdEditor = require('./lib/markdown-editor/');
-var debug = require('./lib/debug');
-mdEditor.init();
-
-var ace = require('brace');
-require('brace/mode/text');
-require('brace/theme/clouds');
-
-var editor = ace.edit('wysiwyg-editor');
-var session = editor.getSession();
-var renderer = editor.renderer;
 var marked = require('marked');
+var createMdEditor = require('./lib/markdown-editor/');
+var createEditor = require('./lib/editor/');
 
-session.setMode('ace/mode/text');
+var debug = require('./lib/debug');
 
-editor.setTheme('ace/theme/clouds');
+var initialValue = 'Line1\nLine2\nLine3';
+var mdEditor= createMdEditor({ val: initialValue }); 
+var editor= createEditor({ val: initialValue }); 
 
-editor.setValue('Line1\nLine2\nLine3');
-mdEditor.update('Line1\nLine2\nLine3');
+editor
+  .on('change', function (e) {
+    var action = e.data.action
+      , start  = util.normalizeLocation(e.data.range.start)
+      , end    = util.normalizeLocation(e.data.range.end)
+    ;
 
-renderer.setShowGutter(false);
-renderer.setOption('fontSize', 20)
-
-var $editor = document.getElementById('wysiwyg-editor');
-var $textlayer = $editor.getElementsByClassName('ace_text-layer')[0];
-
-editor.on('change', function (e) {
-  var action = e.data.action
-    , start  = util.normalizeLocation(e.data.range.start)
-    , end    = util.normalizeLocation(e.data.range.end)
-  ;
-
-  switch (action) {
-    case 'removeText':
-      mdEditor.remove(start, end);
-      break;
-    case 'insertText':
-      mdEditor.insert(start, end, e.data.text);
-      break;
-    default: 
-      console.log('unknown action', action);
-      break;
-  }
-});
-
-window.g = { 
-    editor     : editor
-  , session    : session
-  , renderer   : renderer
-  , $editor    : $editor
-  , $textlayer : $textlayer
-};
+    switch (action) {
+      case 'removeText':
+        mdEditor.remove(start, end);
+        break;
+      case 'insertText':
+        mdEditor.insert(start, end, e.data.text);
+        break;
+      default: 
+        console.log('unknown action', action);
+        break;
+    }
+  });
