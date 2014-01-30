@@ -13,6 +13,10 @@ var mdEditor= createMdEditor({ val: initialValue });
 var editor= createEditor({ val: initialValue }); 
 
 editor
+  .on('bold', function (editor, arg) {
+    console.log('editor bold');  
+  })
+  .editor
   .on('change', function (e) {
     var action = e.data.action
       , start  = util.normalizeLocation(e.data.range.start)
