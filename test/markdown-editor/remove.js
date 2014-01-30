@@ -32,5 +32,13 @@ test('\nremove', function (t) {
     , { row: 2, col: 3 }
     , 'Line1\nLine2\nLie3'
   )
+
+  check(
+      t
+    , 'Line1\nLine2\nLine3'
+    , { row: 0, col: 5 }
+    , { row: 1, col: 0 }
+    , 'Line1Line2\nLine3'
+  )
   t.end()
 })

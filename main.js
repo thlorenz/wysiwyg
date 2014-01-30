@@ -42,6 +42,9 @@ editor.on('change', function (e) {
     case 'removeText':
       mdEditor.remove(start, end);
       break;
+    case 'insertText':
+      mdEditor.insert(start, end, e.data.text);
+      break;
     default: 
       console.log('unknown action', action);
       break;

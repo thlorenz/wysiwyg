@@ -4,7 +4,7 @@
   "description": "wysiwyg markdown editor",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.js",
+    "test": "tap test/**/*.js",
     "start": "beefy main.js 3000"
   },
   "repository": {
@@ -17,8 +17,6 @@
     "marked": "~0.3.0"
   },
   "devDependencies": {
-    "nave": "~0.4.3",
-    "tape": "~1.0.4",
     "tap": "~0.4.3",
     "beefy": "~0.7.1"
   },
