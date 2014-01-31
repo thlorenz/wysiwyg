@@ -25,10 +25,14 @@ editor
 
     switch (action) {
       case 'removeText':
+      case 'removeLines':
         mdEditor.remove(start, end);
         break;
       case 'insertText':
         mdEditor.insert(start, end, e.data.text);
+        break;
+      case 'insertLines':
+        mdEditor.insert(start, end, e.data.lines.join('\n'));
         break;
       default: 
         console.log('unknown action', action);
