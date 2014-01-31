@@ -12,9 +12,15 @@ var initialValue = 'Line1\nLine2\nLine3';
 var mdEditor= createMdEditor({ val: initialValue }); 
 var editor= createEditor({ val: initialValue }); 
 
+window.editor = editor;
 editor
-  .on('bold', function (editor, arg) {
-    console.log('editor bold');  
+  .on('bold', function () {
+    var ed = editor.editor;
+    var range = ed.getSelectionRange()
+      , start  = util.normalizeLocation(range.start)
+      , end    = util.normalizeLocation(range.end)
+    ;
+    mdEditor.insertMark(start, end, '**', true)
   })
   .editor
   .on('change', function (e) {
