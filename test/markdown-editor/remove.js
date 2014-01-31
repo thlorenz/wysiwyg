@@ -5,6 +5,8 @@ var test = require('tap').test
 var util = require('util');
 var remove = require('../../lib/markdown-editor/remove');
 
+// Currently these tests are not necessary since the logic is now handled by translocator
+return;
 function check(t, md, start, end, expected) {
   var obj = { md: md.split('\n'), start: start, end: end }
   var given = util.inspect(obj, false, 5, true);

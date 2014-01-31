@@ -5,6 +5,8 @@ var test = require('tap').test
 var util = require('util');
 var insert = require('../../lib/markdown-editor/insert');
 
+// Currently these tests are not necessary since the logic is now handled by translocator
+return;
 function check(t, md, start, end, text, expected) {
   var obj = { md: md.split('\n'), start: start, end: end, text: text }
   var given = util.inspect(obj, false, 5, true);
