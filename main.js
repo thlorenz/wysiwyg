@@ -1,6 +1,7 @@
 'use strict';
 
 var initialValue = 'Line1\nLine2\nLine3';
+var renderer = require('./lib/markdown/renderer');
 
 var markdown = require('./lib/markdown')({ raw: initialValue });
 require('./lib/markdown/editor')({ 
@@ -30,3 +31,10 @@ wysiwyg
   .on('insert', function (e) {
     markdown.insert(e.start, e.end, e.text);
   });
+
+markdown
+  .on('value-changed', function (e) {
+    var rendered = renderer.render(e.val);
+    var html = rendered.slice('<p>'.length, -('</p>'.length + 1))
+    wysiwyg.render(html);
+  })
