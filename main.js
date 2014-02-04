@@ -2,11 +2,11 @@
 
 var initialValue = 'Line1\nLine2\nLine3';
 
-var markdown = require('./lib/markdown')({ val: initialValue });
+var markdown = require('./lib/markdown')({ raw: initialValue });
 require('./lib/markdown/editor')({ 
     markdown : markdown
   , id       : 'markdown-editor'
-  , val     : initialValue
+  , val      : initialValue
 });
 
 var wysiwyg = require('./lib/wysiwyg')({ val: initialValue });
@@ -20,6 +20,9 @@ var wysiwygEditor = require('./lib/wysiwyg/editor')({
 wysiwyg
   .on('bold', function (e) {
     markdown.insertMark('bold', e.start, e.end, '**', true)
+  })
+  .on('italic', function (e) {
+    markdown.insertMark('italic', e.start, e.end, '*', true)
   })
   .on('remove', function (e) {
     markdown.remove(e.start, e.end);
