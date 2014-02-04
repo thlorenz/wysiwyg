@@ -19,7 +19,7 @@ var wysiwygEditor = require('./lib/wysiwyg/editor')({
 
 wysiwyg
   .on('bold', function (e) {
-    markdown.insertMark(e.start, e.end, '**', true)
+    markdown.insertMark('bold', e.start, e.end, '**', true)
   })
   .on('remove', function (e) {
     markdown.remove(e.start, e.end);
