@@ -17,3 +17,13 @@
 ## Links
 
 - use `[` as start mark and `)` as end?
+
+## nested marks
+
+- now working properly
+- making something bold + italic works somewhat (adds `***` on both ends)
+- making part of an italic string bold not working at all
+  - close italic right before bold string
+  - reopen italic right after bold string
+  - adjust start/end buddies
+  - make bolded sting italic + bold
