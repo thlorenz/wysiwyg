@@ -1,12 +1,22 @@
-div.editor {
+div.wysiwyg-editor {
   position: absolute;
   height: 100%;
-  width: 50%;
+  width: 48%;
+}
+
+div.indicators {
+  position: absolute;
+  left: 50%;
+  width: 10%;
+}
+
+div.indicators .active {
+  background: #aaa;
 }
 
 div.markdown-editor {
   position: absolute;
   height: 100%;
-  left: 50%;
-  width: 50%;
+  left: 53%;
+  width: 45%;
 }
