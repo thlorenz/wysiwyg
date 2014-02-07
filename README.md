@@ -19,8 +19,7 @@ For now:
 
 - stay calm
 - start watching this repo
-- enjoy life
-
+- **enjoy** life
 
 ## License
 
