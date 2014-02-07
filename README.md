@@ -3,17 +3,23 @@
 wysiwyg markdown editor
 
 ```js
-// TODO
+var a = 3;
+console.log(a);
 ```
 
-## Status
-
-Nix, Nada, Nichevo, Nothing --> go away!
 ## Installation
 
     npm install wysiwyg
 
 ## API
+
+### API is forthcoming, heavily spiking on this ;)
+
+For now:
+
+- stay calm
+- start watching this repo
+- enjoy life
 
 
 ## License
