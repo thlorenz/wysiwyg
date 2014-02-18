@@ -18,7 +18,7 @@ console.log(a);
 For now:
 
 - stay calm
-- start watching this repo
+- start *watching* this repo
 - **enjoy** life
 
 ## License
