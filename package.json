@@ -15,7 +15,8 @@
   "dependencies": {
     "brace": "~0.2.0",
     "translocator": "~0.1.1",
-    "markdown": "~0.5.0"
+    "markdown": "~0.5.0",
+    "indexes-of": "~1.0.1"
   },
   "devDependencies": {
     "tap": "~0.4.3",
